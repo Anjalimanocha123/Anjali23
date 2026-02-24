@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Poppins', sans-serif; }
+    .playfair { font-family: 'Playfair Display', serif; }
+    
+    /* Floating Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(-5deg); }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 182, 193, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(255, 182, 193, 0.8); }
+    }
+    
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+      60% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+    
+    @keyframes bounce-soft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .float-animation { animation: float 6s ease-in-out infinite; }
+    .float-animation-reverse { animation: floatReverse 5s ease-in-out infinite; }
+    .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+    .sparkle { animation: sparkle 2s ease-in-out infinite; }
+    .slide-up { animation: slideUp 0.8s ease-out forwards; }
+    .wave-hand { animation: wave 2.5s infinite; transform-origin: 70% 70%; display: inline-block; }
+    .bounce-soft { animation: bounce-soft 2s ease-in-out infinite; }
+    
+    .gradient-bg {
+      background: linear-gradient(-45deg, #ffecd2, #fcb69f, #ffecd2, #a8edea);
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite;
+    }
+    
+    /* Cute decorative elements */
+    .cute-blob {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .nav-link {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff6b9d, #c44569);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    .nav-link:hover::after {
+      width: 80%;
+    }
+    
+    .skill-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+    
+    .project-card {
+      transition: all 0.4s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .profile-pic-container {
+      position: relative;
+    }
+    
+    .profile-pic-container::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #a18cd1);
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #ffecd2; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff9a9e, #fecfef); border-radius: 10px; }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    .stagger-6 { animation-delay: 0.6s; }
+    
+    html, body { height: 100%; margin: 0; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto gradient-bg">
+  <div class="min-h-full w-full">
+   <!-- Floating Decorative Elements -->
+   <div class="fixed top-20 left-10 w-16 h-16 bg-pink-300/30 cute-blob pointer-events-none"></div>
+   <div class="fixed top-40 right-20 w-20 h-20 bg-purple-300/20 cute-blob float-animation-reverse pointer-events-none"></div>
+   <div class="fixed bottom-32 left-20 w-12 h-12 bg-yellow-300/30 cute-blob pointer-events-none" style="animation-delay: -2s;"></div>
+   <div class="fixed bottom-20 right-32 w-14 h-14 bg-blue-300/20 cute-blob float-animation pointer-events-none"></div><!-- Sparkles -->
+   <div class="fixed top-32 left-1/4 text-2xl sparkle pointer-events-none">
+    ✨
+   </div>
+   <div class="fixed top-1/2 right-1/4 text-xl sparkle pointer-events-none" style="animation-delay: 0.5s;">
+    💫
+   </div>
+   <div class="fixed bottom-1/3 left-1/3 text-lg sparkle pointer-events-none" style="animation-delay: 1s;">
+    ⭐
+   </div><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/70 shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-4">
+     <div class="flex items-center justify-between">
+      <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent playfair">
+       Portfolio ✨
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+       <a href="#home" class="nav-link text-gray-700 hover:text-pink-500 transition-colors font-medium">Home</a> <a href="#about" class="nav-link text-gray-700 hover:text-pink-500 transition-colors font-medium">About</a> <a href="#skills" class="nav-link text-gray-700 hover:text-pink-500 transition-colors font-medium">Skills</a> <a href="#projects" class="nav-link text-gray-700 hover:text-pink-500 transition-colors font-medium">Projects</a> <a href="#contact" class="nav-link text-gray-700 hover:text-pink-500 transition-colors font-medium">Contact</a>
+      </div><button id="mobile-menu-btn" class="md:hidden text-2xl">🍔</button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md px-6 py-4 border-t">
+     <div class="flex flex-col gap-4">
+      <a href="#home" class="text-gray-700 hover:text-pink-500 transition-colors font-medium">Home</a> <a href="#about" class="text-gray-700 hover:text-pink-500 transition-colors font-medium">About</a> <a href="#skills" class="text-gray-700 hover:text-pink-500 transition-colors font-medium">Skills</a> <a href="#projects" class="text-gray-700 hover:text-pink-500 transition-colors font-medium">Projects</a> <a href="#contact" class="text-gray-700 hover:text-pink-500 transition-colors font-medium">Contact</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+     <div class="text-center md:text-left slide-up">
+      <div class="text-lg text-pink-500 font-medium mb-2">
+       Hello there! <span class="wave-hand">👋</span>
+      </div>
+      <h1 id="hero-name" class="text-5xl md:text-6xl font-bold text-gray-800 playfair mb-4">I'm <span class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">Your Name</span></h1>
+      <p id="hero-title" class="text-xl md:text-2xl text-gray-600 mb-6">Creative Developer &amp; Designer</p>
+      <p class="text-gray-500 mb-8 max-w-md">Crafting beautiful digital experiences with passion and creativity ✨</p>
+      <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+       <a href="#projects" class="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg hover:shadow-pink-300/50 transition-all hover:scale-105 bounce-soft"> View My Work 🚀 </a> <a href="#contact" class="px-8 py-3 border-2 border-pink-400 text-pink-500 rounded-full font-medium hover:bg-pink-50 transition-all"> Say Hello! 💌 </a>
+      </div>
+     </div><!-- Profile Picture -->
+     <div class="flex justify-center slide-up stagger-2">
+      <div class="profile-pic-container">
+       <div id="profile-pic" class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200 flex items-center justify-center overflow-hidden shadow-2xl">
+        <div class="text-center p-8">
+         <div class="text-6xl mb-2">
+          <a href="https://i.pinimg.com/736x/bf/ab/81/bfab81e72531d0cf85bd46e6b32fc476.jpg"></a>
+         </div>
+         <p class="text-gray-500 text-sm">Click to add your photo</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-16 slide-up">
+      <span class="text-pink-500 font-medium">Get to know me</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 playfair mt-2">About Me 🌸</h2>
+     </div>
+     <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl slide-up stagger-2">
+      <div class="grid md:grid-cols-3 gap-8 items-center">
+       <div class="md:col-span-2">
+        <p id="about-description" class="text-gray-600 leading-relaxed text-lg mb-6">I'm a passionate developer who loves creating beautiful and functional digital experiences. With a keen eye for design and a heart for clean code, I bring ideas to life through creative solutions.</p>
+        <p class="text-gray-500 leading-relaxed">When I'm not coding, you can find me exploring new technologies, sipping coffee ☕, or getting inspired by art and nature 🌿</p>
+        <div class="flex flex-wrap gap-4 mt-8">
+         <div class="flex items-center gap-2 bg-pink-50 px-4 py-2 rounded-full">
+          <span>💼</span> <span class="text-gray-700 text-sm">Open to Work</span>
+         </div>
+         <div class="flex items-center gap-2 bg-purple-50 px-4 py-2 rounded-full">
+          <span>🎓</span> <span class="text-gray-700 text-sm">Self-Taught</span>
+         </div>
+         <div class="flex items-center gap-2 bg-indigo-50 px-4 py-2 rounded-full">
+          <span>🌍</span> <span class="text-gray-700 text-sm">Remote Friendly</span>
+         </div>
+        </div>
+       </div>
+       <div class="flex justify-center">
+        <div class="relative">
+         <div class="w-32 h-32 bg-gradient-to-br from-pink-400 to-purple-400 rounded-2xl rotate-6 absolute"></div>
+         <div class="w-32 h-32 bg-white rounded-2xl shadow-lg flex items-center justify-center relative z-10">
+          <div class="text-center">
+           <div class="text-3xl font-bold text-pink-500">
+            3+
+           </div>
+           <div class="text-xs text-gray-500">
+            Years Exp
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Skills Section -->
+   <section id="skills" class="py-24 px-6 bg-white/50">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16 slide-up">
+      <span class="text-pink-500 font-medium">What I do best</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 playfair mt-2">My Skills ⚡</h2>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="skill-card bg-white rounded-2xl p-6 text-center shadow-lg slide-up stagger-1">
+       <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-400 to-pink-400 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+        🎨
+       </div>
+       <h3 class="font-semibold text-gray-800 mb-1">UI/UX Design</h3>
+       <div class="w-full bg-gray-100 rounded-full h-2 mt-3">
+        <div class="bg-gradient-to-r from-orange-400 to-pink-400 h-2 rounded-full" style="width: 90%"></div>
+       </div>
+      </div>
+      <div class="skill-card bg-white rounded-2xl p-6 text-center shadow-lg slide-up stagger-2">
+       <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+        💻
+       </div>
+       <h3 class="font-semibold text-gray-800 mb-1">Frontend Dev</h3>
+       <div class="w-full bg-gray-100 rounded-full h-2 mt-3">
+        <div class="bg-gradient-to-r from-blue-400 to-indigo-400 h-2 rounded-full" style="width: 85%"></div>
+       </div>
+      </div>
+      <div class="skill-card bg-white rounded-2xl p-6 text-center shadow-lg slide-up stagger-3">
+       <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-400 to-teal-400 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+        🔧
+       </div>
+       <h3 class="font-semibold text-gray-800 mb-1">Backend Dev</h3>
+       <div class="w-full bg-gray-100 rounded-full h-2 mt-3">
+        <div class="bg-gradient-to-r from-green-400 to-teal-400 h-2 rounded-full" style="width: 75%"></div>
+       </div>
+      </div>
+      <div class="skill-card bg-white rounded-2xl p-6 text-center shadow-lg slide-up stagger-4">
+       <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+        📱
+       </div>
+       <h3 class="font-semibold text-gray-800 mb-1">Mobile Apps</h3>
+       <div class="w-full bg-gray-100 rounded-full h-2 mt-3">
+        <div class="bg-gradient-to-r from-purple-400 to-pink-400 h-2 rounded-full" style="width: 70%"></div>
+       </div>
+      </div>
+     </div><!-- Tech Stack -->
+     <div class="mt-16 bg-white rounded-3xl p-8 shadow-lg slide-up stagger-5">
+      <h3 class="text-center text-gray-800 font-semibold mb-6">Tech Stack I Love 💕</h3>
+      <div class="flex flex-wrap justify-center gap-4">
+       <span class="px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-medium">JavaScript</span> <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">React</span> <span class="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium">Node.js</span> <span class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Python</span> <span class="px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">Figma</span> <span class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">TypeScript</span> <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-full text-sm font-medium">Tailwind CSS</span> <span class="px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">Firebase</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Projects Section -->
+   <section id="projects" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-16 slide-up">
+      <span class="text-pink-500 font-medium">My creative work</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 playfair mt-2">Projects 🚀</h2>
+     </div><!-- Major Projects -->
+     <div class="mb-16">
+      <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2"><span class="text-3xl">⭐</span> Major Projects</h3>
+      <div class="grid md:grid-cols-2 gap-8">
+       <div class="project-card bg-white rounded-3xl overflow-hidden shadow-xl slide-up stagger-1">
+        <div class="h-48 bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-400 flex items-center justify-center">
+         <div class="text-6xl">
+          🎯
+         </div>
+        </div>
+        <div class="p-6">
+         <div class="flex items-center gap-2 mb-3">
+          <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs font-medium">Featured</span> <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-medium">Full Stack</span>
+         </div>
+         <h4 id="major-project-1-title" class="text-xl font-bold text-gray-800 mb-2">Project Title One</h4>
+         <p class="text-gray-500 text-sm mb-4">A comprehensive web application showcasing advanced features and modern design patterns.</p>
+         <div class="flex gap-3">
+          <a id="major-project-1-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full text-sm font-medium hover:shadow-lg transition-all inline-block">Live Demo →</a>
+         </div>
+        </div>
+       </div>
+       <div class="project-card bg-white rounded-3xl overflow-hidden shadow-xl slide-up stagger-2">
+        <div class="h-48 bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400 flex items-center justify-center">
+         <div class="text-6xl">
+          🌟
+         </div>
+        </div>
+        <div class="p-6">
+         <div class="flex items-center gap-2 mb-3">
+          <span class="px-3 py-1 bg-teal-100 text-teal-600 rounded-full text-xs font-medium">Featured</span> <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-medium">Mobile App</span>
+         </div>
+         <h4 id="major-project-2-title" class="text-xl font-bold text-gray-800 mb-2">Project Title Two</h4>
+         <p class="text-gray-500 text-sm mb-4">An innovative mobile application with intuitive UX and seamless performance.</p>
+         <div class="flex gap-3">
+          <a id="major-project-2-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-gradient-to-r from-teal-500 to-blue-500 text-white rounded-full text-sm font-medium hover:shadow-lg transition-all inline-block">Live Demo →</a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Minor Projects -->
+     <div>
+      <h3 class="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-2"><span class="text-3xl">💎</span> Minor Projects</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+       <div class="project-card bg-white rounded-2xl p-6 shadow-lg slide-up stagger-3">
+        <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+         ⏰
+        </div>
+        <h4 class="font-bold text-gray-800 mb-3">Live Clock</h4>
+        <div class="bg-gradient-to-br from-orange-100 to-red-100 rounded-lg p-4 text-center mb-4">
+         <div id="clock-display" class="text-2xl font-bold text-orange-600 font-mono">
+          00:00:00
+         </div>
+         <div id="clock-date" class="text-xs text-gray-600 mt-2">
+          Loading...
+         </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+         <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">JavaScript</span> <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Real-time</span>
+        </div>
+       </div>
+       <div class="project-card bg-white rounded-2xl p-6 shadow-lg slide-up stagger-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+         🧮
+        </div>
+        <h4 class="font-bold text-gray-800 mb-3">Calculator</h4>
+        <div class="bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg p-3 mb-4">
+         <div id="calc-display" class="text-right text-lg font-bold text-green-700 bg-white rounded p-2 mb-2 font-mono">
+          0
+         </div>
+         <div class="grid grid-cols-4 gap-1"><button class="calc-btn bg-green-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-green-600 transition-colors active:scale-95">C</button> <button class="calc-btn bg-green-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-green-600 transition-colors active:scale-95">/</button> <button class="calc-btn bg-green-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-green-600 transition-colors active:scale-95">×</button> <button class="calc-btn bg-green-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-green-600 transition-colors active:scale-95">←</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">7</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">8</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">9</button> <button class="calc-btn bg-green-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-green-600 transition-colors active:scale-95">-</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">4</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">5</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">6</button> <button class="calc-btn bg-green-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-green-600 transition-colors active:scale-95">+</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">1</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">2</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">3</button> <button class="calc-btn bg-orange-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-orange-600 transition-colors active:scale-95">=</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95 col-span-2">0</button> <button class="calc-btn bg-gray-300 text-gray-800 px-2 py-1 rounded text-xs font-bold hover:bg-gray-400 transition-colors active:scale-95">.</button> <button class="calc-btn bg-green-500 text-white px-2 py-1 rounded text-xs font-bold hover:bg-green-600 transition-colors active:scale-95">%</button>
+         </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+         <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">JavaScript</span> <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Functional</span>
+        </div>
+       </div>
+       <div class="project-card bg-white rounded-2xl p-6 shadow-lg slide-up stagger-5">
+        <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-purple-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+         ⚡
+        </div>
+        <h4 class="font-bold text-gray-800 mb-2">Mini Project 3</h4>
+        <p class="text-gray-500 text-sm mb-4">Performance optimization toolkit.</p>
+        <div class="flex flex-wrap gap-2">
+         <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Node</span> <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">API</span>
+        </div>
+       </div>
+       <div class="project-card bg-white rounded-2xl p-6 shadow-lg slide-up stagger-6">
+        <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+         🎵
+        </div>
+        <h4 class="font-bold text-gray-800 mb-2">Mini Project 4</h4>
+        <p class="text-gray-500 text-sm mb-4">Creative media application.</p>
+        <div class="flex flex-wrap gap-2">
+         <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Python</span> <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">ML</span>
+        </div>
+       </div>
+       <div class="project-card bg-white rounded-2xl p-6 shadow-lg slide-up stagger-6">
+        <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+         🌊
+        </div>
+        <h4 class="font-bold text-gray-800 mb-2">Mini Project 5</h4>
+        <p class="text-gray-500 text-sm mb-4">Data visualization dashboard.</p>
+        <div class="flex flex-wrap gap-2">
+         <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">D3.js</span> <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Charts</span>
+        </div>
+       </div>
+       <div class="project-card bg-white rounded-2xl p-6 shadow-lg slide-up stagger-6">
+        <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-400 rounded-xl flex items-center justify-center text-2xl mb-4">
+         🎮
+        </div>
+        <h4 class="font-bold text-gray-800 mb-2">Mini Project 6</h4>
+        <p class="text-gray-500 text-sm mb-4">Fun interactive game project.</p>
+        <div class="flex flex-wrap gap-2">
+         <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Canvas</span> <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Game</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Working/Experience Section -->
+   <section id="working" class="py-24 px-6 bg-white/50">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-16 slide-up">
+      <span class="text-pink-500 font-medium">My journey so far</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 playfair mt-2">Experience 💼</h2>
+     </div>
+     <div class="space-y-8">
+      <div class="relative pl-8 border-l-2 border-pink-300 slide-up stagger-1">
+       <div class="absolute -left-3 top-0 w-6 h-6 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full border-4 border-white"></div>
+       <div class="bg-white rounded-2xl p-6 shadow-lg ml-4">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+         <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs font-medium">Current</span> <span class="text-gray-400 text-sm">2023 - Present</span>
+        </div>
+        <h4 class="text-xl font-bold text-gray-800">Senior Developer</h4>
+        <p class="text-pink-500 font-medium mb-2">Company Name</p>
+        <p class="text-gray-500 text-sm">Leading frontend development and UI/UX initiatives for key products.</p>
+       </div>
+      </div>
+      <div class="relative pl-8 border-l-2 border-purple-300 slide-up stagger-2">
+       <div class="absolute -left-3 top-0 w-6 h-6 bg-gradient-to-br from-purple-400 to-indigo-400 rounded-full border-4 border-white"></div>
+       <div class="bg-white rounded-2xl p-6 shadow-lg ml-4">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+         <span class="text-gray-400 text-sm">2021 - 2023</span>
+        </div>
+        <h4 class="text-xl font-bold text-gray-800">Web Developer</h4>
+        <p class="text-purple-500 font-medium mb-2">Previous Company</p>
+        <p class="text-gray-500 text-sm">Built responsive web applications and collaborated with design teams.</p>
+       </div>
+      </div>
+      <div class="relative pl-8 border-l-2 border-indigo-300 slide-up stagger-3">
+       <div class="absolute -left-3 top-0 w-6 h-6 bg-gradient-to-br from-indigo-400 to-blue-400 rounded-full border-4 border-white"></div>
+       <div class="bg-white rounded-2xl p-6 shadow-lg ml-4">
+        <div class="flex flex-wrap items-center gap-3 mb-2">
+         <span class="text-gray-400 text-sm">2020 - 2021</span>
+        </div>
+        <h4 class="text-xl font-bold text-gray-800">Junior Developer</h4>
+        <p class="text-indigo-500 font-medium mb-2">Startup Inc</p>
+        <p class="text-gray-500 text-sm">Started my journey building cool projects and learning every day.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Contact Section -->
+   <section id="contact" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+     <div class="text-center mb-16 slide-up">
+      <span class="text-pink-500 font-medium">Let's connect</span>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 playfair mt-2">Get In Touch 💌</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-3xl p-8 shadow-xl slide-up stagger-1">
+       <h3 class="text-xl font-bold text-gray-800 mb-6">Send me a message!</h3>
+       <form id="contact-form" class="space-y-4">
+        <div>
+         <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label> <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 outline-none transition-all" placeholder="Your lovely name">
+        </div>
+        <div>
+         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label> <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 outline-none transition-all" placeholder="hello@example.com">
+        </div>
+        <div>
+         <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label> <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 outline-none transition-all resize-none" placeholder="Tell me about your project..."></textarea>
+        </div><button type="submit" class="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-pink-300/50 transition-all hover:scale-[1.02] active:scale-[0.98]"> Send Message 🚀 </button>
+       </form>
+       <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-xl text-center">
+        ✨ Message sent successfully! I'll get back to you soon.
+       </div>
+      </div>
+      <div class="space-y-6 slide-up stagger-2">
+       <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center gap-4">
+         <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-400 rounded-xl flex items-center justify-center text-2xl">
+          📧
+         </div>
+         <div>
+          <p class="text-sm text-gray-500">Email me at</p>
+          <p id="contact-email-display" class="font-medium text-gray-800">hello@example.com</p>
+         </div>
+        </div>
+       </div>
+       <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center gap-4">
+         <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-xl flex items-center justify-center text-2xl">
+          📸
+         </div>
+         <div>
+          <p class="text-sm text-gray-500">Follow on Instagram</p><a id="instagram-link" href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="font-medium text-purple-500 hover:text-purple-600 transition-colors">@yourusername</a>
+         </div>
+        </div>
+       </div>
+       <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center gap-4">
+         <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-xl flex items-center justify-center text-2xl">
+          💼
+         </div>
+         <div>
+          <p class="text-sm text-gray-500">Connect on LinkedIn</p><a href="#" class="font-medium text-blue-500 hover:text-blue-600 transition-colors">Let's connect!</a>
+         </div>
+        </div>
+       </div>
+       <div class="bg-gradient-to-br from-pink-100 to-purple-100 rounded-2xl p-6">
+        <p class="text-gray-700 font-medium mb-2">💡 Fun Fact</p>
+        <p class="text-gray-600 text-sm">I respond to most messages within 24 hours! Looking forward to hearing from you ✨</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12 px-6 bg-white/80 backdrop-blur-sm">
+    <div class="max-w-4xl mx-auto text-center">
+     <div class="text-3xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent playfair mb-4">
+      Thank You! 💖
+     </div>
+     <p class="text-gray-500 mb-6">Made with love and lots of ☕</p>
+     <div class="flex justify-center gap-4">
+      <a href="#" class="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full flex items-center justify-center text-white hover:shadow-lg transition-all hover:scale-110"> <span class="text-sm">📧</span> </a> <a href="#" class="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white hover:shadow-lg transition-all hover:scale-110"> <span class="text-sm">📸</span> </a> <a href="#" class="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full flex items-center justify-center text-white hover:shadow-lg transition-all hover:scale-110"> <span class="text-sm">💼</span> </a> <a href="#" class="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center text-white hover:shadow-lg transition-all hover:scale-110"> <span class="text-sm">🐙</span> </a>
+     </div>
+     <p class="text-gray-400 text-sm mt-8">© 2024 Your Name. All rights reserved.</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      profile_name: 'Your Name',
+      profile_title: 'Creative Developer & Designer',
+      about_text: "I'm a passionate developer who loves creating beautiful and functional digital experiences. With a keen eye for design and a heart for clean code, I bring ideas to life through creative solutions.",
+      contact_email: 'hello@example.com',
+      instagram_handle: '@yourusername',
+      major_project_1_title: 'Project Title One',
+      major_project_1_link: 'https://project-link.com',
+      major_project_2_title: 'Project Title Two',
+      major_project_2_link: 'https://project-link.com',
+      background_color: '#ffecd2',
+      surface_color: '#ffffff',
+      text_color: '#1f2937',
+      primary_action_color: '#ec4899',
+      secondary_action_color: '#8b5cf6',
+      font_family: 'Poppins',
+      font_size: 16
+    };
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formSuccess.classList.remove('hidden');
+      contactForm.reset();
+      setTimeout(() => {
+        formSuccess.classList.add('hidden');
+      }, 5000);
+    });
+    
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      const clockDisplay = document.getElementById('clock-display');
+      if (clockDisplay) {
+        clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+      }
+      
+      const options = { weekday: 'short', month: 'short', day: 'numeric' };
+      const dateStr = now.toLocaleDateString('en-US', options);
+      const clockDate = document.getElementById('clock-date');
+      if (clockDate) {
+        clockDate.textContent = dateStr;
+      }
+    }
+    
+    updateClock();
+    setInterval(updateClock, 1000);
+    
+    // Calculator
+    let calcDisplay = document.getElementById('calc-display');
+    let calcValue = '0';
+    let calcOperator = null;
+    let calcPreviousValue = null;
+    
+    function updateCalcDisplay() {
+      if (calcDisplay) {
+        calcDisplay.textContent = calcValue || '0';
+      }
+    }
+    
+    document.querySelectorAll('.calc-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const text = e.target.textContent.trim();
+        
+        if (text === 'C') {
+          calcValue = '0';
+          calcOperator = null;
+          calcPreviousValue = null;
+        } else if (text === '←') {
+          calcValue = calcValue.slice(0, -1) || '0';
+        } else if (text === '=' && calcOperator && calcPreviousValue !== null) {
+          const prev = parseFloat(calcPreviousValue);
+          const current = parseFloat(calcValue);
+          let result = 0;
+          
+          if (calcOperator === '+') result = prev + current;
+          else if (calcOperator === '-') result = prev - current;
+          else if (calcOperator === '×') result = prev * current;
+          else if (calcOperator === '/') result = prev / current;
+          else if (calcOperator === '%') result = prev % current;
+          
+          calcValue = String(result);
+          calcOperator = null;
+          calcPreviousValue = null;
+        } else if (['+', '-', '×', '/', '%'].includes(text)) {
+          if (calcValue !== '0') {
+            calcPreviousValue = calcValue;
+            calcOperator = text;
+            calcValue = '0';
+          }
+        } else if (text === '.') {
+          if (!calcValue.includes('.')) {
+            calcValue += '.';
+          }
+        } else if (!isNaN(text)) {
+          if (calcValue === '0') {
+            calcValue = text;
+          } else {
+            calcValue += text;
+          }
+        }
+        
+        updateCalcDisplay();
+      });
+    });
+    
+    // Profile picture upload handling
+    const profilePic = document.getElementById('profile-pic');
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    
+    profilePic.style.cursor = 'pointer';
+    profilePic.addEventListener('click', () => {
+      fileInput.click();
+    });
+    
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          profilePic.innerHTML = `<img src="${event.target.result}" alt="Profile picture" class="w-full h-full object-cover">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.slide-up').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease-out';
+      observer.observe(el);
+    });
+    
+    // Render function for config changes
+    async function onConfigChange(config) {
+      // Update hero section
+      const heroName = document.getElementById('hero-name');
+      const name = config.profile_name || defaultConfig.profile_name;
+      heroName.innerHTML = `I'm <span class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">${name}</span>`;
+      
+      const heroTitle = document.getElementById('hero-title');
+      heroTitle.textContent = config.profile_title || defaultConfig.profile_title;
+      
+      // Update about section
+      const aboutDesc = document.getElementById('about-description');
+      aboutDesc.textContent = config.about_text || defaultConfig.about_text;
+      
+      // Update contact section
+      const contactEmail = document.getElementById('contact-email-display');
+      contactEmail.textContent = config.contact_email || defaultConfig.contact_email;
+      
+      const instagramLink = document.getElementById('instagram-link');
+      const handle = config.instagram_handle || defaultConfig.instagram_handle;
+      instagramLink.textContent = handle;
+      instagramLink.href = `https://instagram.com/${handle.replace('@', '')}`;
+      
+      // Update major project titles and links
+      const majorProject1Title = document.getElementById('major-project-1-title');
+      majorProject1Title.textContent = config.major_project_1_title || defaultConfig.major_project_1_title;
+      
+      const majorProject1Link = document.getElementById('major-project-1-link');
+      majorProject1Link.href = config.major_project_1_link || defaultConfig.major_project_1_link;
+      
+      const majorProject2Title = document.getElementById('major-project-2-title');
+      majorProject2Title.textContent = config.major_project_2_title || defaultConfig.major_project_2_title;
+      
+      const majorProject2Link = document.getElementById('major-project-2-link');
+      majorProject2Link.href = config.major_project_2_link || defaultConfig.major_project_2_link;
+      
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${fontFamily}, Poppins, sans-serif`;
+      
+      // Apply font size
+      const fontSize = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${fontSize}px`;
+    }
+    
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => window.elementSdk.setConfig({ background_color: value })
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => window.elementSdk.setConfig({ surface_color: value })
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => window.elementSdk.setConfig({ text_color: value })
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => window.elementSdk.setConfig({ primary_action_color: value })
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => window.elementSdk.setConfig({ secondary_action_color: value })
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => window.elementSdk.setConfig({ font_family: value })
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => window.elementSdk.setConfig({ font_size: value })
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['profile_name', config.profile_name || defaultConfig.profile_name],
+          ['profile_title', config.profile_title || defaultConfig.profile_title],
+          ['about_text', config.about_text || defaultConfig.about_text],
+          ['major_project_1_title', config.major_project_1_title || defaultConfig.major_project_1_title],
+          ['major_project_1_link', config.major_project_1_link || defaultConfig.major_project_1_link],
+          ['major_project_2_title', config.major_project_2_title || defaultConfig.major_project_2_title],
+          ['major_project_2_link', config.major_project_2_link || defaultConfig.major_project_2_link],
+          ['contact_email', config.contact_email || defaultConfig.contact_email],
+          ['instagram_handle', config.instagram_handle || defaultConfig.instagram_handle]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d2cac10d43584aa',t:'MTc3MTkxMjA4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
