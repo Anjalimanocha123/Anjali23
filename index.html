@@ -509,71 +509,42 @@ nav { backdrop-filter: blur(20px); background: rgba(255,255,255,0.1) !important;
       </div>
      </div>
     </div>
-   </section><!-- Contact Section -->
-   <section id="contact" class="py-24 px-6">
-    <div class="max-w-4xl mx-auto">
-     <div class="text-center mb-16 slide-up">
-      <span class="text-pink-500 font-medium">Let's connect</span>
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 playfair mt-2">Get In Touch 💌</h2>
-     </div>
-     <div class="grid md:grid-cols-2 gap-8">
-      <div class="bg-white rounded-3xl p-8 shadow-xl slide-up stagger-1">
-       <h3 class="text-xl font-bold text-gray-800 mb-6">Send me a message!</h3>
-       <form id="contact-form" class="space-y-4">
-        <div>
-         <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label> <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 outline-none transition-all" placeholder="Your lovely name">
-        </div>
-        <div>
-         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label> <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 outline-none transition-all" placeholder="hello@example.com">
-        </div>
-        <div>
-         <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label> <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 outline-none transition-all resize-none" placeholder="Tell me about your project..."></textarea>
-        </div><button type="submit" class="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-pink-300/50 transition-all hover:scale-[1.02] active:scale-[0.98]"> Send Message 🚀 </button>
-       </form>
-       <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-xl text-center">
-        ✨ Message sent successfully! I'll get back to you soon.
-       </div>
+  <!-- Contact Section -->
+<section id="contact" class="py-24 px-6 bg-white/50">
+  <div class="max-w-4xl mx-auto text-center">
+    
+    <span class="text-pink-500 font-medium">Get in touch</span>
+    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 playfair mt-2 mb-10">
+      Contact Me 💌
+    </h2>
+
+    <div class="bg-white rounded-3xl p-8 shadow-xl">
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Name -->
+        <input id="name" type="text" placeholder="Your Name"
+          class="p-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-pink-400">
+
+        <!-- Email -->
+        <input id="email" type="email" placeholder="Your Email"
+          class="p-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-pink-400">
+
       </div>
-      <div class="space-y-6 slide-up stagger-2">
-       <div class="bg-white rounded-2xl p-6 shadow-lg">
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-400 rounded-xl flex items-center justify-center text-2xl">
-          📧
-         </div>
-         <div>
-          <p class="text-sm text-gray-500">Email me at</p>
-          <p id="contact-email-display" class="font-medium text-gray-800">anjalimanocha462@gmail.com</p>
-         </div>
-        </div>
-       </div>
-       <div class="bg-white rounded-2xl p-6 shadow-lg">
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-xl flex items-center justify-center text-2xl">
-          📸
-         </div>
-         <div>
-          <p class="text-sm text-gray-500">Follow on Instagram</p><a id="instagram-link" href="https://www.instagram.com/crafteranjali?igsh=MTFwZD3aGtwMXpxbw==" target="_blank" rel="noopener noreferrer" class="font-medium text-purple-500 hover:text-purple-600 transition-colors">@crafteranjali</a>
-         </div>
-        </div>
-       </div>
-       <div class="bg-white rounded-2xl p-6 shadow-lg">
-        <div class="flex items-center gap-4">
-         <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-xl flex items-center justify-center text-2xl">
-          💼
-         </div>
-         <div>
-          <p class="text-sm text-gray-500">Connect on LinkedIn</p><a href="#" class="font-medium text-blue-500 hover:text-blue-600 transition-colors">Let's connect!</a>
-         </div>
-        </div>
-       </div>
-       <div class="bg-gradient-to-br from-pink-100 to-purple-100 rounded-2xl p-6">
-        <p class="text-gray-700 font-medium mb-2">💡 Fun Fact</p>
-        <p class="text-gray-600 text-sm">I respond to most messages within 24 hours! Looking forward to hearing from you ✨</p>
-       </div>
-      </div>
-     </div>
+
+      <!-- Message -->
+      <textarea id="message" rows="5" placeholder="Your Message..."
+        class="w-full mt-6 p-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+
+      <!-- Button -->
+      <button onclick="sendToWhatsApp()"
+        class="mt-6 px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all">
+        Send Message 🚀
+      </button>
+
     </div>
-   </section><!-- Footer -->
+  </div>
+</section>
    <footer class="py-12 px-6 bg-white/80 backdrop-blur-sm">
     <div class="max-w-4xl mx-auto text-center">
      <div class="text-3xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent playfair mb-4">
@@ -873,7 +844,26 @@ nav { backdrop-filter: blur(20px); background: rgba(255,255,255,0.1) !important;
     }
   </script>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d2cac10d43584aa',t:'MTc3MTkxMjA4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>
+function sendToWhatsApp() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
 
+    if(name === "" || email === "" || message === ""){
+        alert("Please fill all fields!");
+        return;
+    }
+
+    let phoneNumber = "9350591608"; // 👈 replace with your WhatsApp number
+
+    let text = `Hello, my name is ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+
+    let url = `https://wa.me/${phoneNumber}?text=${text}`;
+
+    window.open(url, "_blank");
+}
+</script>
 </html>
 
 
