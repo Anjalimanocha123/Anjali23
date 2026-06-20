@@ -624,6 +624,11 @@ nav { backdrop-filter: blur(20px); background: rgba(255,255,255,0.1) !important;
     
     // Live Clock
   function updateClock() {
+  const clockDisplay = document.getElementById('clock-display');
+  const clockDate = document.getElementById('clock-date');
+
+  if (!clockDisplay || !clockDate) return;
+
   const now = new Date();
 
   let hours = now.getHours();
@@ -631,36 +636,16 @@ nav { backdrop-filter: blur(20px); background: rgba(255,255,255,0.1) !important;
   const seconds = now.getSeconds();
 
   const ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12;
-  hours = hours ? hours : 12;
+  hours = hours % 12 || 12;
 
-  const formattedTime =
-    String(hours).padStart(2, '0') + ":" +
-    String(minutes).padStart(2, '0') + ":" +
-    String(seconds).padStart(2, '0') + " " + ampm;
+  clockDisplay.textContent =
+    `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')} ${ampm}`;
 
-  const clockDisplay = document.getElementById('clock-display');
-  if (clockDisplay) {
-    clockDisplay.textContent = formattedTime;
-  }
-
-  const options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  };
-
-  const dateStr = now.toLocaleDateString('en-IN', options);
-
-  const clockDate = document.getElementById('clock-date');
-  if (clockDate) {
-    clockDate.textContent = dateStr;
-  }
+  clockDate.textContent = now.toDateString();
 }
-    
-    updateClock();
-    setInterval(updateClock, 1000);
+
+updateClock();
+setInterval(updateClock, 1000);
     
     // Calculator
     let calcDisplay = document.getElementById('calc-display');
