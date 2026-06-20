@@ -609,18 +609,7 @@ nav { backdrop-filter: blur(20px); background: rgba(255,255,255,0.1) !important;
       });
     });
     
-    // Contact form handling
-    const contactForm = document.getElementById('contact-form');
-    const formSuccess = document.getElementById('form-success');
-    
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      formSuccess.classList.remove('hidden');
-      contactForm.reset();
-      setTimeout(() => {
-        formSuccess.classList.add('hidden');
-      }, 5000);
-    });
+   
     
     // Live Clock
   function updateClock() {
